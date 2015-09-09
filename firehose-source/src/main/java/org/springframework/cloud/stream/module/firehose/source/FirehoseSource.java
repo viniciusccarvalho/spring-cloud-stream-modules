@@ -32,6 +32,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.integration.websocket.ClientWebSocketContainer;
 import org.springframework.integration.websocket.inbound.WebSocketInboundChannelAdapter;
+import org.springframework.messaging.converter.MessageConverter;
 import org.springframework.util.StringUtils;
 import org.springframework.web.socket.client.WebSocketClient;
 import org.springframework.web.socket.client.standard.StandardWebSocketClient;
@@ -62,7 +63,7 @@ public class FirehoseSource implements InitializingBean {
     @Bean
     public WebSocketInboundChannelAdapter webSocketInboundChannelAdapter() {
         WebSocketInboundChannelAdapter adapter = new WebSocketInboundChannelAdapter(webSocketContainer());
-        adapter.setMessageConverters(Collections.singletonList(this.converter));
+        adapter.setMessageConverters(Collections.<MessageConverter>singletonList(this.converter));
         adapter.setOutputChannel(channels.output());
         adapter.setPayloadType(ByteBuffer.class);
         return adapter;
@@ -73,7 +74,7 @@ public class FirehoseSource implements InitializingBean {
         StandardWebSocketClient wsClient = new StandardWebSocketClient();
         if (metadata.isTrustSelfCerts()) {
             SSLContext context = buildSslContext();
-            wsClient.setUserProperties(Collections.singletonMap(WsWebSocketContainer.SSL_CONTEXT_PROPERTY, context));
+            wsClient.setUserProperties(Collections.<String, Object>singletonMap(WsWebSocketContainer.SSL_CONTEXT_PROPERTY, context));
         }
         return wsClient;
     }

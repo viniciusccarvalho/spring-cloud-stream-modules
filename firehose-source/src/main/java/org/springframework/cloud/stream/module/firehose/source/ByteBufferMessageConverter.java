@@ -19,6 +19,8 @@ package org.springframework.cloud.stream.module.firehose.source;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 import org.cloudfoundry.dropsonde.events.EventFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHeaders;
@@ -54,7 +56,7 @@ public class ByteBufferMessageConverter implements MessageConverter {
             EventFactory.Envelope envelope = EventFactory.Envelope.parseFrom(bytes);
             result = TupleFactory.createTuple(envelope);
         } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
+            throw new IllegalStateException("Could not deserialize bynary data, check you protobuf mappings",e);
         }
         return (metadata.isOutputJson()) ? jsonConverter.convert(result) : result;
     }
