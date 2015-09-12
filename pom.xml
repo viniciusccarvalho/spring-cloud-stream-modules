@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.springframework.cloud.stream.module</groupId>
 	<artifactId>spring-cloud-stream-modules</artifactId>
+	<version>1.0.0.BUILD-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<url>http://projects.spring.io/spring-xd/</url>
 	<organization>
@@ -19,7 +19,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.7</java.version>
-		<spring-cloud-lattice.version>1.0.0.BUILD-SNAPSHOT</spring-cloud-lattice.version>
+		<spring-cloud-lattice.version>1.0.0.M1</spring-cloud-lattice.version>
 	</properties>
 
 	<modules>
@@ -30,6 +30,7 @@
 		<module>ftp-source</module>
 		<module>http-source</module>
 		<module>time-source</module>
+		<module>twitterstream-source</module>
 		<!-- processors in alphabetical order -->
 		<module>filter-processor</module>
 		<module>groovy-filter-processor</module>
@@ -37,10 +38,9 @@
 		<module>transform-processor</module>
 		<!-- sinks in alphabetical order -->
 		<module>counter-sink</module>
+		<module>hdfs-sink</module>
 		<module>log-sink</module>
 		<module>redis-sink</module>
-		<!-- tasks in alphabetical order -->
-		<module>timestamp-task</module>
 	</modules>
 	<build>
 		<plugins>
@@ -94,7 +94,7 @@ As of now, the imports activation of spring-cloud-build is not working properly.
 			<dependency>
 				<groupId>org.springframework.cloud.stream.module</groupId>
 				<artifactId>spring-cloud-stream-modules-common-configuration</artifactId>
-				<version>${project.version}</version>
+				<version>1.0.0.BUILD-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
@@ -105,7 +105,7 @@ As of now, the imports activation of spring-cloud-build is not working properly.
 			<dependency>
 				<groupId>org.springframework.cloud.stream.module</groupId>
 				<artifactId>spring-cloud-stream-modules-test-support</artifactId>
-				<version>${project.version}</version>
+				<version>1.0.0.BUILD-SNAPSHOT</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
@@ -128,7 +128,7 @@ As of now, the imports activation of spring-cloud-build is not working properly.
 			<dependency>
 				<groupId>org.springframework.cloud.stream.module</groupId>
 				<artifactId>script-variable-generator</artifactId>
-				<version>${project.version}</version>
+				<version>1.0.0.BUILD-SNAPSHOT</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
